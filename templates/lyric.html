@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="lyric">
+    <blockquote>{{ lyric.body|linebreaks }}</blockquote>
+    from {{ lyric.song }} on {{ lyric.album }} by {{ lyric.artist }}<br />
+    shared by {{ lyric.user }} {{ lyric.date|timesince }} ago
+  </div>
+{% endblock %}

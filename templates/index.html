@@ -2,4 +2,12 @@
 
 {% block content %}
   <h2>Recent Lyrics</h2>
+  
+  {% for lyric in lyrics %}
+    <div class="lyric">
+      <blockquote>{{ lyric.body|linebreaks }}</blockquote>
+      from {{ lyric.song }} on {{ lyric.album }} by {{ lyric.artist }}<br />
+      shared by {{ lyric.user }} {{ lyric.date|timesince }} ago
+    </div>
+  {% endfor %}
 {% endblock %}

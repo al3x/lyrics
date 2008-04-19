@@ -3,4 +3,14 @@ from google.appengine.api import users
 
 class Lyric(db.Model):
     body = db.TextProperty()
-    owner = db.UserProperty(required=True)
+    artist = db.StringProperty()
+    album = db.StringProperty()
+    song = db.StringProperty()
+    user = db.UserProperty()
+    date = db.DateTimeProperty(auto_now_add=True)
+    
+class Favorite(db.Model):
+    user = db.UserProperty(required=True)
+    lyric = db.ReferenceProperty(Lyric)
+    date = db.DateTimeProperty(auto_now_add=True)
+    

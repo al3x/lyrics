@@ -16,7 +16,13 @@ h1 { font-size: 3em; }
 h1 a:hover { text-decoration: none; }
 h2 { font-size: 2em; }
 
+
 /* classes */
+.lyric {
+  border-bottom: 1px dotted #ccc;
+  padding: 10px 0 10px 0;
+}
+
 .lyricform br {
 	clear: left;
 }
@@ -42,7 +48,6 @@ h2 { font-size: 2em; }
 .optional {
   color: #666;
 }
-
 
 /* ids */
 
