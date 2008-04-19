@@ -1,0 +1,64 @@
+/* elements */
+body {
+  background-color: #fff;
+  color: #191919;
+  font-family: Georgia, Times, serif;
+  margin: 2em 15% 0 15%;
+}
+
+a { 
+  color: #0080ff;
+  text-decoration: none;
+}
+a:active, a:hover { text-decoration: underline; }
+
+h1 { font-size: 3em; }
+h1 a:hover { text-decoration: none; }
+h2 { font-size: 2em; }
+
+/* classes */
+.lyricform br {
+	clear: left;
+}
+
+.lyricform label, .lyricform input[type=text] {
+	display: block;
+	width: 60%;
+	float: left;
+	margin-bottom: 10px;
+}
+
+.lyricform label {
+	text-align: right;
+	width: 150px;
+	padding-right: 20px;
+}
+
+.lyricform textarea {
+  width: 60%;
+  height: 200px;
+}
+
+.optional {
+  color: #666;
+}
+
+
+/* ids */
+
+#content {
+  font-size: 1em;
+}
+
+#nav {
+  float: right;
+  font-family: Helvetica, sans-serif;
+  font-size: .9em;
+  list-style-type: none;
+  padding: 0;
+}
+
+#nav li {
+  display: inline;
+  margin-right: 1em;
+}

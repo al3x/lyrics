@@ -1,0 +1,25 @@
+<html>
+  <head>
+    <title>Lyrics We Love</title>
+    <link type="text/css" rel="stylesheet" href="/stylesheets/screen.css" />
+    <script type="text/javascript" src="/javascripts/jquery-1.2.3.min.js"></script>
+    <script type="text/javascript" src="/javascripts/app.js"></script>
+  </head>
+  <body>
+    <ul id="nav">
+      {% if user %}
+        <li>{{ user }}</li>
+        <li><a href="/lyric/new">add a lyric</a></li>
+        <li><a href="{{ logout_url }}">logout</a></li>
+      {% else %}
+        <a href="{{ login_url }}">login</a>
+      {% endif %}
+    </ul>
+    
+    <h1><a href="/">Lyrics We Love</a></h1>
+
+    <div id="content">
+      {% block content %}{% endblock %}
+    </div>
+  </body>
+</html>

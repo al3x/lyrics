@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Share A Lyric</h2>
+  
+  <form action="/lyric/new" method="post" name="new_lyric_form" class="lyricform">
+    <label for="lyric">Lyric</label>
+    <textarea name="body"></textarea>
+    <br />
+    
+    <label for="artist">Artist</label>
+    <input type="text" name="artist" />
+    <br />
+    
+    <label for="album" class="optional">Album</label>
+    <input type="text" name="album" />
+    <br />
+    
+    <label for="song">Song</label>
+    <input type="text" name="song" />
+    <br />
+    
+    <label for="submit"></label>
+    <input type="submit" value="La lala la" />
+  </form>
+{% endblock %}
