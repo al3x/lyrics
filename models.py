@@ -5,6 +5,7 @@ class Lyric(db.Model):
     body = db.TextProperty()
     artist = db.StringProperty()
     album = db.StringProperty()
+	album_ASIN = db.StringProperty() # this is the Amazon ID for the album. Admin would fill this in, not the user
     song = db.StringProperty()
     user = db.UserProperty()
     date = db.DateTimeProperty(auto_now_add=True)

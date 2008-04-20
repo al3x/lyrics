@@ -35,6 +35,7 @@ class NewLyric(BetterHandler):
         lyric.song = unicode(song)
         lyric.artist = unicode(artist)
         lyric.album = unicode(album)
+
         lyric.put()
         
         for_template = {
