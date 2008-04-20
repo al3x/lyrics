@@ -49,8 +49,8 @@ def main():
     application = webapp.WSGIApplication([
                                             ('/', MainPage),
                                             ('/lyric/new', NewLyric)
-                                        ],
-                                       debug=True)
+                                         ],
+                                         debug=True)
                                        
     wsgiref.handlers.CGIHandler().run(application)
 
