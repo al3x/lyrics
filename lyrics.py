@@ -28,6 +28,7 @@ class NewLyric(BetterHandler):
         song = cgi.escape(self.request.get('song'))
         artist = cgi.escape(self.request.get('artist'))
         album = cgi.escape(self.request.get('album'))
+        ASIN = cgi.escape(self.request.get('ASIN'))
         
         lyric = Lyric()
         lyric.user = users.get_current_user()
@@ -35,6 +36,7 @@ class NewLyric(BetterHandler):
         lyric.song = unicode(song)
         lyric.artist = unicode(artist)
         lyric.album = unicode(album)
+        lyric.ASIN = unicode(ASIN)
 
         lyric.put()
         
@@ -44,11 +46,29 @@ class NewLyric(BetterHandler):
         
         self.response.out.write(template.render(self.template_path('lyric.html'), self.template_values(for_template)))
         
-                
+
+class Artist(BetterHandler):
+    def get(self):
+        artist = cgi.escape(self.request.get('name'));
+        
+        lyrics = db.GqlQuery("SELECT * FROM Lyric WHERE artist = :1 ORDER BY date DESC", artist);
+        
+        if lyrics.count() < 1:
+            lyrics = None;
+        
+        for_template = {
+            'artist': artist,
+            'lyrics': lyrics,
+        }
+        
+        self.response.out.write(template.render(self.template_path('artist.html'), self.template_values(for_template)))
+
+
 def main():
     application = webapp.WSGIApplication([
                                             ('/', MainPage),
-                                            ('/lyric/new', NewLyric)
+                                            ('/lyric/new', NewLyric),
+                                            ('/artist', Artist)
                                          ],
                                          debug=True)
                                        

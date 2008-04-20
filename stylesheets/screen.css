@@ -49,6 +49,16 @@ h2 { font-size: 2em; }
   color: #666;
 }
 
+
+.error {
+    background-color: #FFEEEE;
+    color: #CC6666;
+    border: 1px solid #CC6666;
+    padding: 8px;
+    display: block;
+}
+
+
 /* ids */
 
 #content {

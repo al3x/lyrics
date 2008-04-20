@@ -1,9 +1,11 @@
-{% extends "base.html" %}
-
-{% block content %}
-  <div class="lyric">
-    <blockquote>{{ lyric.body|linebreaks }}</blockquote>
-    from {{ lyric.song }} on {{ lyric.album }} by {{ lyric.artist }}<br />
-    shared by {{ lyric.user }} {{ lyric.date|timesince }} ago
-  </div>
-{% endblock %}
+    <div class="lyric">
+        <blockquote>{{ lyric.body|linebreaks }}</blockquote>
+        from "{{ lyric.song }}" on 
+        {% if lyric.ASIN %}
+            <em><a href="http://www.amazon.com/dp/{{ lyric.ASIN }}" target="_blank">{{ lyric.album }}</a></em>
+        {% else %}
+            <em>{{ lyric.album }}</em>
+        {% endif %}
+        by <strong><a href="/artist?name={{lyric.artist}}">{{ lyric.artist }}</a></strong><br />
+        shared by {{ lyric.user }} {{ lyric.date|timesince }} ago
+    </div>
