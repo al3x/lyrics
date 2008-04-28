@@ -8,6 +8,7 @@ class Lyric(db.Model):
     ASIN = db.StringProperty()
     song = db.StringProperty()
     user = db.UserProperty()
+    key_id = db.IntegerProperty()
     date = db.DateTimeProperty(auto_now_add=True)
     
 class Favorite(db.Model):

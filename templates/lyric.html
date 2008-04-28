@@ -1,11 +1,18 @@
-    <div class="lyric">
-        <blockquote>{{ lyric.body|linebreaks }}</blockquote>
-        from "{{ lyric.song }}" on 
-        {% if lyric.ASIN %}
-            <em><a href="http://www.amazon.com/dp/{{ lyric.ASIN }}" target="_blank">{{ lyric.album }}</a></em>
-        {% else %}
-            <em>{{ lyric.album }}</em>
-        {% endif %}
-        by <strong><a href="/artist?name={{lyric.artist}}">{{ lyric.artist }}</a></strong><br />
-        shared by {{ lyric.user }} {{ lyric.date|timesince }} ago
-    </div>
+<div class="lyric" class="clearer">
+  <p class="lyric_details">
+    from "{{ lyric.song }}"
+    
+    {% if lyric.album %}
+      {% if lyric.ASIN %}
+        on <em><a href="http://www.amazon.com/dp/{{ lyric.ASIN }}" target="_blank">{{ lyric.album }}</a></em>
+      {% else  %}
+        on <em>{{ lyric.album }}</em>
+      {% endif %}
+    {% endif %}
+    
+    by <strong><a href="/artist?name={{ lyric.artist }}">{{ lyric.artist }}</a></strong><br />
+    shared by {{ lyric.user }} {{ lyric.date|timesince }} ago<br />
+    <a href="/lyric?id={{ lyric.key_id }}">permalink</a>
+  </p>
+  <blockquote>{{ lyric.body|linebreaks }}</blockquote>
+</div>

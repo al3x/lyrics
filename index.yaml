@@ -10,14 +10,14 @@ indexes:
 # automatically uploaded to the admin console when you next deploy
 # your application using appcfg.py.
 
-# Used 22 times in query history.
+# Unused in query history -- copied from input.
 - kind: Lyric
   properties:
   - name: artist
   - name: date
     direction: desc
 
-# Used 21 times in query history.
+# Used once in query history.
 - kind: Lyric
   properties:
   - name: date
