@@ -1,16 +1,15 @@
 {% extends "base.html" %}
 
+{% block pageheader %}
+  <h2>lyrics by {{ artist|striptags }}</h2>
+{% endblock %}
+
 {% block content %}
-
   {% if artist and lyrics %}
-
-      <h2>Lyrics by {{ artist|striptags }}</h2>
-  
-      {% for lyric in lyrics %}
-        {% include "lyric.html" %}
-      {% endfor %}
-  
+    {% for lyric in lyrics %}
+      {% include "lyric.html" %}
+    {% endfor %}
   {% else %}
-    <div class="error">No lyrics found by that artist</div>
+    <div class="error">No lyrics found by that artist.</div>
   {% endif %}
 {% endblock %}

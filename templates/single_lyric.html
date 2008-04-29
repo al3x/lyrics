@@ -1,5 +1,9 @@
 {% extends "base.html" %}
 
+{% block pageheader %}
+  <h2>a lyric by {{ lyric.artist|striptags }}</h2>
+{% endblock %}
+
 {% block content %}
     {% include "lyric.html" %}
 {% endblock %}

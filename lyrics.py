@@ -46,7 +46,7 @@ class NewLyric(BetterHandler):
             'lyric': lyric,
         }
         
-        self.response.out.write(template.render(self.template_path('single_lyric.html'), self.template_values(for_template)))
+        self.redirect("/lyric?id=%s" % lyric.key_id)
         
         
 class ALyric(BetterHandler):

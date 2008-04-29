@@ -1,0 +1,8 @@
+BUGS
+- 4/29/2008 edit page doesn't seem to understand that a user owns a song, redirects to / 
+
+FEATURES
+- album search
+- song search
+- user view
+- favorites
