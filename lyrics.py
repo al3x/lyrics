@@ -49,16 +49,71 @@ class NewLyric(BetterHandler):
         self.response.out.write(template.render(self.template_path('single_lyric.html'), self.template_values(for_template)))
         
         
-class Lyric(BetterHandler):
+class ALyric(BetterHandler):
     def get(self):
-        key_id = cgi.escape(self.request.get('id'))
-        lyric = db.GqlQuery("SELECT * FROM Lyric WHERE key_id = :1", key_id)
+        key_id = int(cgi.escape(self.request.get('id')))
+        lyric = Lyric.get_by_id(key_id)
+        
+        if lyric == None:
+            self.redirect("/")
         
         for_template = {
             'lyric': lyric,
         }
         
         self.response.out.write(template.render(self.template_path('single_lyric.html'), self.template_values(for_template)))
+        
+        
+class EditLyric(BetterHandler):
+    def get(self):
+        key_id = int(cgi.escape(self.request.get('id')))
+        lyric = Lyric.get_by_id(key_id)
+
+        if (lyric == None) or (lyric.user is not users.get_current_user()):
+            self.redirect("/")
+
+        for_template = {
+            'lyric': lyric,
+        }
+
+        self.response.out.write(template.render(self.template_path('edit_lyric.html'), self.template_values(for_template)))
+        
+    def post(self):
+        key_id = int(cgi.escape(self.request.get('id')))
+        body = cgi.escape(self.request.get('body'))
+        song = cgi.escape(self.request.get('song'))
+        artist = cgi.escape(self.request.get('artist'))
+        album = cgi.escape(self.request.get('album'))
+        ASIN = cgi.escape(self.request.get('ASIN'))
+        
+        lyric = Lyric.get_by_id(key_id)
+        lyric.user = users.get_current_user()
+        lyric.body = unicode(body)
+        lyric.song = unicode(song)
+        lyric.artist = unicode(artist)
+        lyric.album = unicode(album)
+        lyric.ASIN = unicode(ASIN)
+        lyric.put()
+        
+        for_template = {
+            'lyric': lyric,
+        }
+        
+        self.response.out.write(template.render(self.template_path('single_lyric.html'), self.template_values(for_template)))
+        
+        
+class DeleteLyric(BetterHandler):
+    def get(self):
+        key_id = int(cgi.escape(self.request.get('id')))
+        lyric = Lyric.get_by_id(key_id)
+
+        if (lyric == None) or (lyric.user is not users.get_current_user()):
+            self.redirect("/")
+            
+        lyric.delete()
+        
+        # TODO redirect to a referrer in a safe way
+        self.redirect("/")
         
 
 class Artist(BetterHandler):
@@ -80,9 +135,11 @@ class Artist(BetterHandler):
 def main():
     application = webapp.WSGIApplication([
                                             ('/', MainPage),
+                                            ('/lyric', ALyric),
                                             ('/lyric/new', NewLyric),
+                                            ('/lyric/edit', EditLyric),
+                                            ('/lyric/delete', DeleteLyric),
                                             ('/artist', Artist),
-                                            ('/lyric', Lyric)
                                          ],
                                          debug=True)
                                        

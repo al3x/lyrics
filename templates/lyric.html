@@ -13,6 +13,10 @@
     by <strong><a href="/artist?name={{ lyric.artist }}">{{ lyric.artist }}</a></strong><br />
     shared by {{ lyric.user }} {{ lyric.date|timesince }} ago<br />
     <a href="/lyric?id={{ lyric.key_id }}">permalink</a>
+    {% ifequal lyric.user user %}
+      &bull; <a href="/lyric/edit?id={{ lyric.key_id }}">edit</a>
+      &bull; <a href="/lyric/delete?id={{ lyric.key_id }}" onclick="return confirm('Are you sure you want to delete this lyric?');">delete</a>
+    {% endifequal %}
   </p>
   <blockquote>{{ lyric.body|linebreaks }}</blockquote>
 </div>

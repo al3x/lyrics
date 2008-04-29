@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block pageheader %}
+  <h2>please do edit this lyric</h2>
+{% endblock %}
+
+{% block content %}
+
+  <form action="/lyric/edit" method="post" name="new_lyric_form" class="lyricform">
+    <input type="hidden" name="id" value="{{ lyric.key_id }}">
+    
+    <label for="date">originally shared</label>
+   {{ lyric.date|timesince }} ago<br />
+        
+    <label for="lyric">lyric</label>
+    <textarea name="body">{{ lyric.body }}</textarea>
+    <br />
+    
+    <label for="artist">artist</label>
+    <input type="text" name="artist" value="{{ lyric.artist }}" />
+    <br />
+    
+    <label for="song">song</label>
+    <input type="text" name="song" value="{{ lyric.song }}" />
+    <br />
+    
+    <label for="album" class="optional">album</label>
+    <input type="text" name="album" value="{{ lyric.album }}" />
+    <br />
+    
+    <label for="ASIN" class="optional">ASIN</label>
+    <input type="text" name="ASIN" value="{{ lyric.ASIN }}" />
+    <br />
+
+    <label for="submit"></label>
+    <input type="submit" value="la la la shoop shoop" />
+  </form>
+{% endblock %}
