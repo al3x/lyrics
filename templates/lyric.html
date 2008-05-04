@@ -1,22 +1,29 @@
-<div class="lyric" class="clearer">
-  <p class="lyric_details">
-    from "{{ lyric.song }}"
+<div class="lyric">
+  <div class="verse">{{ lyric.body|linebreaks }}</div>
+  
+  <div class="lyric_details">
+    from "{{ lyric.song }}"<br />
     
     {% if lyric.album %}
       {% if lyric.ASIN %}
-        on <em><a href="http://www.amazon.com/dp/{{ lyric.ASIN }}" target="_blank">{{ lyric.album }}</a></em>
+        on <em><a href="http://www.amazon.com/dp/{{ lyric.ASIN }}" target="_blank">{{ lyric.album }}</a></em><br />
       {% else  %}
-        on <em>{{ lyric.album }}</em>
+        on <em>{{ lyric.album }}</em><br />
       {% endif %}
     {% endif %}
     
     by <strong><a href="/artist?name={{ lyric.artist }}">{{ lyric.artist }}</a></strong><br />
-    shared by {{ lyric.user }} {{ lyric.date|timesince }} ago<br />
-    <a href="/lyric?id={{ lyric.key_id }}">permalink</a>
-    {% ifequal lyric.user user %}
-      &bull; <a href="/lyric/edit?id={{ lyric.key_id }}">edit</a>
-      &bull; <a href="/lyric/delete?id={{ lyric.key_id }}" onclick="return confirm('Are you sure you want to delete this lyric?');">delete</a>
-    {% endifequal %}
-  </p>
-  <blockquote>{{ lyric.body|linebreaks }}</blockquote>
+    shared by {{ lyric.user }}<br />
+    {{ lyric.date|timesince }} ago<br />
+    
+    <div class="actions">
+      <a href="/lyric?id={{ lyric.key_id }}">permalink</a>
+      {% ifequal lyric.user user %}
+        &bull; <a href="/lyric/edit?id={{ lyric.key_id }}">edit</a>
+        &bull; <a href="/lyric/delete?id={{ lyric.key_id }}" onclick="return confirm('Are you sure you want to delete this lyric?');">delete</a>
+      {% endifequal %}
+    </div>
+  </div>
+  
+  <br class="clearer" />
 </div>
