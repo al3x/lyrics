@@ -5,25 +5,33 @@
 {% endblock %}
 
 {% block content %}  
+  <script src="/javascripts/jquery.inputHintBox.js" type="text/javascript" charset="utf-8"></script>
+  <script type="text/javascript" charset="utf-8">
+    $(document).ready( function() {
+      LWL.initFormHelp();
+    })
+  </script>
+
+
   <form action="/lyric/new" method="post" name="new_lyric_form" class="lyricform">
     <label for="lyric">lyric</label>
-    <textarea name="body"></textarea>
+    <textarea name="body" id="body-field"></textarea>
     <br />
     
     <label for="artist">artist</label>
-    <input type="text" name="artist" />
+    <input type="text" name="artist" id="artist-field" />
     <br />
     
     <label for="song">song</label>
-    <input type="text" name="song" />
+    <input type="text" name="song" id="song-field" />
     <br />
     
     <label for="album" class="optional">album</label>
-    <input type="text" name="album" />
+    <input type="text" name="album" id="album-field" />
     <br />
     
     <label for="ASIN" class="optional">ASIN</label>
-    <input type="text" name="ASIN" />
+    <input type="text" name="ASIN" id="ASIN-field" />
     <br />
 
     <label for="submit"></label>
