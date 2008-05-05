@@ -1,4 +1,6 @@
-if (!LWL) { var LWL = {} };
+var LWL;
+
+if (!LWL) LWL = {};
 
 /*
 	Text used in the help tooltips for the form
@@ -20,9 +22,9 @@ LWL.initFormHelp = function() {
 												className:'tooltip',
 												source:'attr',
 												attr:'title',
-												incrementLeft:230,
-												incrementTop:40
-												});
+												incrementLeft:100,
+												incrementTop:37,
+												attachTo:'#wrapper'});
 	}
 	
 }
