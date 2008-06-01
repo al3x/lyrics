@@ -46,6 +46,7 @@ class NewLyric(BetterHandler):
             'lyric': lyric,
         }
         
+        # @todo set some kind of flash variable here to show update message on next page
         self.redirect("/lyric?id=%s" % lyric.key_id)
         
         
@@ -68,15 +69,15 @@ class EditLyric(BetterHandler):
     def get(self):
         key_id = int(cgi.escape(self.request.get('id')))
         lyric = Lyric.get_by_id(key_id)
-
-        if (lyric == None) or (lyric.user is not users.get_current_user()):
-            self.redirect("/")
-
-        for_template = {
-            'lyric': lyric,
-        }
-
-        self.response.out.write(template.render(self.template_path('edit_lyric.html'), self.template_values(for_template)))
+        
+        if (lyric == None) or ( cmp(lyric.user, users.get_current_user()) != 0 ):
+             self.redirect("/")
+        else :
+            for_template = {
+                'lyric': lyric,
+            }
+        
+            self.response.out.write(template.render(self.template_path('edit_lyric.html'), self.template_values(for_template)))
         
     def post(self):
         key_id = int(cgi.escape(self.request.get('id')))
@@ -99,6 +100,7 @@ class EditLyric(BetterHandler):
             'lyric': lyric,
         }
         
+        # @todo set some kind of flash variable here to show update message on next page
         self.response.out.write(template.render(self.template_path('single_lyric.html'), self.template_values(for_template)))
         
         
@@ -107,12 +109,13 @@ class DeleteLyric(BetterHandler):
         key_id = int(cgi.escape(self.request.get('id')))
         lyric = Lyric.get_by_id(key_id)
 
-        if (lyric == None) or (lyric.user is not users.get_current_user()):
+        if (lyric == None) or ( cmp(lyric.user, users.get_current_user()) != 0 ):
             self.redirect("/")
             
         lyric.delete()
         
-        # TODO redirect to a referrer in a safe way
+        # @todo redirect to a referrer in a safe way
+        # @todo set some kind of flash variable here to show update message on next page
         self.redirect("/")
         
 

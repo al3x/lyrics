@@ -17,7 +17,7 @@ indexes:
   - name: date
     direction: desc
 
-# Used 134 times in query history.
+# Used 11 times in query history.
 - kind: Lyric
   properties:
   - name: date
