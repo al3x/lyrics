@@ -13,10 +13,10 @@
 
   <form action="/lyric/edit" method="post" name="new_lyric_form" class="lyricform">
     <input type="hidden" name="id" value="{{ lyric.key_id }}">
-    
-    <label for="date">originally shared</label>
-   {{ lyric.date|timesince }} ago<br />
         
+	<label>1st shared</label>
+	<input class="staticfield" type="text" name="date" id="date-field" value="{{ lyric.date|timesince }} ago" disabled="disabled" />
+
     <label for="lyric">lyric</label>
     <textarea name="body" id="body-field">{{ lyric.body }}</textarea>
     <br />
